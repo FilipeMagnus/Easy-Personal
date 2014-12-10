@@ -1,0 +1,71 @@
+﻿@model IEnumerable<EasyPersonal.Models.Pagamentos>
+
+@{
+    ViewBag.Title = "pagamentoAluno";
+}
+
+<h2>Pagamentos</h2>
+
+<p>
+    @Html.ActionLink("Adicionar Pagamento", "addPagamento")
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            <h4 style="margin-top:0px">Valor R$</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Pagar Dia</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Dia Pago</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Status</h4>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            R$ @item.valor.ToString("N2")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diaPagar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.diaPago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.status)
+        </td>
+        
+            @{
+                if (item.status == "Pendente")
+                {
+                    <td>
+                        @Html.ActionLink("Quitar", "quitarPagamento", new { id = item.idPagamento }) |
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "editarPagamento", new { id=item.idPagamento }) |
+                    </td>
+                    <td>
+                        @Html.ActionLink("Deletar", "deletarPagamento", new { id = item.idPagamento })
+                    </td>
+
+                }
+                else
+                {
+                    <td>
+                        @Html.ActionLink("Editar", "editarPagamento", new { id = item.idPagamento })
+                    </td>
+                }
+}
+       
+    </tr>
+}
+
+</table>

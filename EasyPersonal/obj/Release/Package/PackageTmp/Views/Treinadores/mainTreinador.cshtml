@@ -1,0 +1,150 @@
+﻿@using EasyPersonal.Models
+@{
+    ViewBag.Title = "mainTreinador";
+}
+@if (ViewBag.AlertaSenhaSucesso != null)
+{
+    <script type="text/javascript">
+
+        alert('@ViewBag.AlertaSenhaSucesso');
+
+    </script>
+}
+
+        <h2>Bem-vindo(a), @Session["nome"]</h2>
+        <h6 style="margin-left:1%;">@Html.ActionLink("Alterar Perfil", "editarTreinador")</h6>
+    
+           <div style="width:45%; position:relative; float:left; margin-left:3%; margin-right:3%">
+
+       
+            <td>
+                    <h3>Seus Alunos</h3>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Telefone
+                            </th>
+                            <th>
+                                E-mail
+                            </th>
+                        </tr>
+                        @{
+                            int x = 0;
+                            foreach (var item in Alunos.listaAlunos)
+                            {
+                                if (x <= 4)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.nome)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.telefone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.email)
+                                        </td>
+                                    </tr>
+                                    x++;
+                                }
+                            }
+                        }
+                    </table>
+                @Html.ActionLink("Visualizar Todos os Alunos", "listaAluno")
+            
+             </div>
+   
+    <div style="width:45%; position:relative; float:left;">
+        <h3>Próximos Pagamentos</h3>
+        <table class="table">
+            <tr>
+                <th>
+                    Aluno
+                </th>
+                <th>
+                    Dia do Pagamento
+                </th>
+                <th>
+                    Valor R$
+                </th>
+            </tr>
+            @{
+                            x = 0;
+                            foreach (var item in Pagamentos.listaPagamentos)
+                            {
+                                if (x <= 4)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.nome)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.diaPagar)
+                                        </td>
+                                        <td>
+                                            R$ @item.valor.ToString("N2")
+                                        </td>
+                                    </tr>
+                                    x++;
+                                }
+                            }
+            }
+        </table>
+        @Html.ActionLink("Visualizar Todos os Pagamentos", "listaTodosPagamentos")
+    </div>
+
+<div style="clear: both;"></div>
+
+    <div style="margin-left:3%; margin-right:3%">
+    <h3>Seus Exercícios</h3>
+    <table class="table">
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Grupo
+            </th>
+            <th>
+                Equipamento
+            </th>
+        </tr>
+        @{
+            x = 0;
+            foreach (var item in ExerciciosTreinadores.listaExerciciosTreinadores)
+            {
+                if (x <= 13)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.grupo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.equipamento)
+                        </td>
+                    </tr>
+                    x++;
+                }
+            }
+        }
+    </table>
+    @Html.ActionLink("Gerenciar Exercícios", "listaExercicios")
+</div>
+
+
+
+
+
+
+
+
+
+    <br /><br />
+      <div style="clear: both;"></div>
+

@@ -1,0 +1,78 @@
+﻿@model EasyPersonal.Models.Alunos
+
+@{
+    ViewBag.Title = "deletarAluno";
+}
+
+<h2>Deletar Aluno</h2>
+
+<h3>Tem certeza que deseja deletar este aluno?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+     
+        <dt>
+            Nome
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.nome)
+        </dd>
+
+        <dt>
+            Telefone
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefone)
+        </dd>
+
+        <dt>
+            E-Mail
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            Idade
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idade)
+        </dd>
+
+        <dt>
+            Cidade
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cidade)
+        </dd>
+
+        <dt>
+            Sexo
+        </dt>
+
+        <dd>
+            @if (Model.sexo == "m")
+            {
+                <h5 style="margin-top:3px">Masculino</h5>
+            }
+            else
+            {
+                <h5 style="margin-top:3px">Feminino</h5>
+            }
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input style="margin-left:10%" type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

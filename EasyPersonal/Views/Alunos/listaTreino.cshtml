@@ -1,0 +1,100 @@
+﻿@model IEnumerable<EasyPersonal.Models.Treinos>
+
+@{
+    ViewBag.Title = "listaTreino";
+}
+
+<h2>Treino</h2>
+
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Dia Semana  
+        </th>
+        <th>
+            Exercício    
+        </th>
+        <th>
+            Equipamento
+        </th>
+        <th>
+            Grupo Muscular
+        </th>
+        <th>
+            Peso
+        </th>
+        <th>
+            Series
+        </th>
+        <th>
+            Repetições
+        </th>
+        <th>
+            Intervalo
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+          @{
+    switch (item.diaSemana)
+    {
+        case 1:
+            <h5 style="margin-top:0px;">Segunda-Feira</h5>
+            break;
+        case 2:
+        <h5 style="margin-top:0px;">Terça-Feira</h5>
+            break;
+        case 3:
+        <h5 style="margin-top:0px;">Quarta-Feira</h5>
+            break;
+        case 4:
+        <h5 style="margin-top:0px;">Quinta-Feira</h5>
+            break;
+        case 5:
+        <h5 style="margin-top:0px;">Sexta-Feira</h5>
+            break;
+
+        case 6:
+        <h5 style="margin-top:0px;">Sábado</h5>
+            break;
+
+        case 7:
+        <h5 style="margin-top:0px;">Domingo</h5>
+            break;
+
+    }
+
+}
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomeExercicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.equipamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.grupo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.carga)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.series)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.repeticoes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tempo)
+        </td>
+        
+       
+    </tr>
+}
+
+</table>

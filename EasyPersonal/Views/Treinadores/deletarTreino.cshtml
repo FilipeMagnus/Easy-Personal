@@ -1,0 +1,122 @@
+﻿@model EasyPersonal.Models.Treinos
+
+@{
+    ViewBag.Title = "deletarTreino";
+}
+@{ if (Session["SexoAluno"].Equals("m"))
+ {
+    <h2>Deletar treino do @Session["NomeAluno"]</h2>
+ }
+ else
+ {
+    <h2>Deletar treino da @Session["NomeAluno"]</h2>
+ }
+}
+
+<h3>Tem certeza que deseja deletar este treino?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+      
+        <dt>
+            Exercício
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomeExercicio)
+        </dd>
+
+        <dt>
+            Equipamento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.equipamento)
+        </dd>
+
+        <dt>
+            Grupo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.grupo)
+        </dd>
+
+        <dt>
+            Carga
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carga)
+        </dd>
+
+        <dt>
+            Series
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.series)
+        </dd>
+
+        <dt>
+            Repetições
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.repeticoes)
+        </dd>
+
+        <dt>
+            Tempo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tempo)
+        </dd>
+
+        <dt>
+            Dia da Semana
+        </dt>
+
+        <dd>
+            @switch (Model.diaSemana)
+            {
+            case 1:
+            <h5 style="margin-top:5px">Segunda-Feira</h5>
+                    break;
+            case 2:
+            <h5 style="margin-top:5px">Terça-Feira</h5>
+                    break;
+            case 3:
+            <h5 style="margin-top:5px">Quarta-Feira</h5>
+                    break;
+            case 4:
+            <h5 style="margin-top:5px">Quinta-Feira</h5>
+                    break;
+
+            case 5:
+            <h5 style="margin-top:5px">Sexta-Feira</h5>
+                    break;
+
+            case 6:
+            <h5 style="margin-top:5px">Sábado</h5>
+                    break;
+
+            case 7:
+            <h5 style="margin-top:5px">Domingo</h5>
+                    break;
+
+            }
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input style="margin-left:10%" type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "treinosAluno")
+        </div>
+    }
+</div>

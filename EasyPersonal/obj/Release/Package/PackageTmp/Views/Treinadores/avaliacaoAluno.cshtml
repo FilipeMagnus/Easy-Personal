@@ -1,0 +1,27 @@
+﻿
+
+@{
+    ViewBag.Title = "avaliacaoAluno";
+}
+@{ if (Session["SexoAluno"].Equals("m"))
+ {
+    <h2>Selecione um protocolo para o @Session["NomeAluno"]</h2>
+ }
+ else
+ {
+    <h2>Selecione um protocolo para a @Session["NomeAluno"]</h2>
+ }
+}
+
+    <div style="width:33%; position:relative; float:left;">
+        <h3>@Html.ActionLink("Faulkner", "listaFaulkner")</h3> 
+    </div>
+    <div style="width:33%; position:relative; float:left;">
+        <h3>@Html.ActionLink("Pollock 3 Dobras", "listaPollock3")</h3> 
+    </div>
+    <div style="width:33%; position:relative; float:left;">
+        <h3>@Html.ActionLink("Pollock 7 Dobras", "listaPollock7")</h3>
+    </div>
+<div style="clear: both;"></div>
+
+

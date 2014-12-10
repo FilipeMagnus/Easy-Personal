@@ -1,0 +1,135 @@
+﻿@model IEnumerable<EasyPersonal.Models.Treinos>
+
+@{
+    ViewBag.Title = "treinosAluno";
+}
+
+       
+       @{ if (Session["SexoAluno"].Equals("m"))
+            {
+                <h2>Treinos do @Session["NomeAluno"]</h2>
+            }
+            else
+            {
+                <h2>Treinos da @Session["NomeAluno"]</h2>    
+            }
+        }
+<p>
+    @Html.ActionLink("Adicionar Exercicio", "addTreino")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <h4 style="margin-top:0px">Exercício</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Grupo Muscular</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Equipamento</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Carga</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Series</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Repetições</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Tempo de Intervalo</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Dia da Semana</h4>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomeExercicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.grupo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.equipamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.carga)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.series)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.repeticoes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tempo)
+        </td>
+        <td>
+            
+            @{
+    switch (item.diaSemana)
+    {
+        case 1:
+                        <h5>Segunda-Feira</h5>
+            break;
+        case 2:
+                        <h5>Terça-Feira</h5>
+            break;
+        case 3:
+                        <h5>Quarta-Feira</h5>
+            break;
+        case 4:
+                         <h5>Quinta-Feira</h5>
+            break;
+            
+        case 5:
+                          <h5>Sexta-Feira</h5>
+            break;
+   
+        case 6:
+                          <h5>Sábado</h5>
+            break;
+        
+       case 7:
+                         <h5>Domingo</h5>
+            break;
+            
+    }
+
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "editarTreino", new {  id=item.idTreino  }) |
+            @Html.ActionLink("Deletar", "deletarTreino", new { id = item.idTreino })
+        </td>
+    </tr>
+}
+
+</table>
+    
+ 
+@using (Html.BeginForm())
+{
+    <h5>Mostrar Treinos Apenas de:</h5>
+    <select name="dia" id="dia">
+        <option value="1" selected="selected">Segunda-Feira</option>
+        <option value="2">Terça-Feira</option>
+        <option value="3">Quarta-Feira</option>
+        <option value="4">Quinta-Feira</option>
+        <option value="5">Sexta-Feira</option>
+        <option value="6">Sábado</option>
+        <option value="7">Domingo</option>
+    </select>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Filtrar" class="btn btn-default" />
+        </div>
+    </div>
+
+}

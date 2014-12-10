@@ -1,0 +1,91 @@
+﻿@using EasyPersonal.Models
+@model EasyPersonal.Models.Treinos
+
+@{
+    ViewBag.Title = "addTreino";
+}
+@{ if (Session["SexoAluno"].Equals("m"))
+ {
+    <h2>Adicionar treino do @Session["NomeAluno"]</h2>
+ }
+ else
+ {
+    <h2>Adicionar treino do @Session["NomeAluno"]</h2>
+ }
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+        
+
+        @Html.Hidden("idAluno", Session["idAlunoTreinos"])
+
+        
+        <div style="margin-left:10%;">
+            @Html.Label("Exercicio  ")
+            <select name="idExerciciosTreinadores" id="idExerciciosTreiandores">
+                @foreach (var item in ExerciciosTreinadores.listaExerciciosTreinadores)
+                {
+                    <option value="@item.idExercicio">@item.nome</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            @Html.Label("Carga", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.carga, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.carga, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Series", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.series, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.series, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Repetições", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.repeticoes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.repeticoes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Tempo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tempo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tempo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div style="margin-left:7%;">
+            @Html.Label("Dia da Semana")
+            <input type="checkbox" name="seg" value="1">Segunda-Feira |
+            <input type="checkbox" name="ter" value="2">Terça-Feira |
+            <input type="checkbox" name="qua" value="3">Quarta-Feira |
+            <input type="checkbox" name="qui" value="4">Quinta-Feira |
+            <input type="checkbox" name="sex" value="5">Sexta-Feira |
+            <input type="checkbox" name="sab" value="6">Sábado |
+            <input type="checkbox" name="domg" value="7">Domingo
+        </div>
+        </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Adicionar" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "treinosAluno")
+</div>
+

@@ -1,0 +1,175 @@
+﻿@model EasyPersonal.Models.Pollock3
+
+@{
+    ViewBag.Title = "deletarPollock3";
+}
+@{ if (Session["SexoAluno"].Equals("m"))
+ {
+    <h2>Deletar protocolo Pollock 3 dobras do @Session["NomeAluno"]</h2>
+ }
+ else
+ {
+    <h2>Deletar protocolo Pollock 3 dobras da @Session["NomeAluno"]</h2>
+ }
+}
+<h3>Tem certeza que deseja deletar esta avaliação?</h3>
+<div>
+    <h4>Pollock3</h4>
+    <hr />
+    <dl class="dl-horizontal">
+       
+
+        <dt>
+            Data Avaliação
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dataAvaliacao)
+        </dd>
+
+        <dt>
+            Densidade Corporal
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.densidadeCorporal)
+        </dd>
+
+        <dt>
+           Porcentagem Gordura
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.porcentagemGordura)
+        </dd>
+
+        <dt>
+            Porcentagem Muscular
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.porcentagemMuscular)
+        </dd>
+
+        <dt>
+            Altura
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.altura)
+        </dd>
+
+        <dt>
+           Peso Atual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pesoAtual)
+        </dd>
+
+        <dt>
+            Peso Gordo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pesoGordo)
+        </dd>
+
+        <dt>
+            Peso Magro
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pesoMagro)
+        </dd>
+
+       
+
+        <dt>
+            Peso Muscular
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pesoMuscular)
+        </dd>
+
+        <dt>
+            Peso Residual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pesoResidual)
+        </dd>
+
+       
+
+        <dt>
+            Peso Minimo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pesoMinimo)
+        </dd>
+
+        <dt>
+            Peso Máximo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pesoMaximo)
+        </dd>
+
+    
+
+        <dt>
+            Excesso Peso
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.excessoPeso)
+        </dd>
+
+        <dt>
+            IMC
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IMC)
+        </dd>
+
+   
+        <dt>
+           Coxa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coxa)
+        </dd>
+
+        <dt>
+            Triceps
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.triceps)
+        </dd>
+
+        <dt>
+            Supra Ilíaca
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.supraIliaca)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "listaPollock3")
+        </div>
+    }
+</div>

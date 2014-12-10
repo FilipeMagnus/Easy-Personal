@@ -1,0 +1,40 @@
+﻿@model IEnumerable<EasyPersonal.Models.Treinadores>
+@{
+    ViewBag.Title = "ListaTreinadores";
+}
+
+<h2>Treinadores</h2>
+
+
+<br />
+@Html.ActionLink("Criar novo treinador", "cadastraTreinador")
+<br />
+<center>
+    <table border="1">
+        <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Senha</th>
+            <th>Idade</th>
+            <th>Cidade</th>
+            <th>Sexo</th>
+        </tr>
+
+        @foreach (var item in Model)
+    {
+            <tr>
+                <td>@item.idTreinador</td>
+                <td>@item.nome</td>
+                <td>@item.telefone</td>
+                <td>@item.email</td>
+                <td>@item.senha</td>
+                <td>@item.idade</td>
+                <td>@item.cidade</td>
+                <td>@item.sexo</td>
+            </tr>
+    }
+
+    </table>
+</center>

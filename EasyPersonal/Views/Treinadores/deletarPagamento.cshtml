@@ -1,0 +1,56 @@
+﻿@model EasyPersonal.Models.Pagamentos
+
+@{
+    ViewBag.Title = "deletarPagamento";
+}
+
+@{ if (Session["SexoAluno"].Equals("m"))
+ {
+    <h2>Deletar pagamento do @Session["NomeAluno"]</h2>
+ }
+ else
+ {
+    <h2>Deletar pagamento da @Session["NomeAluno"]</h2>
+ }
+}
+<h3>Tem certeza que deseja deletar este pagamento?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+       
+
+        <dt>
+            Valor
+        </dt>
+
+        <dd>
+            R$@Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            Pagar Dia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diaPagar)
+        </dd>
+
+        <dt>
+            Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input style="margin-left:10%" type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "pagamentoAluno")
+        </div>
+    }
+</div>

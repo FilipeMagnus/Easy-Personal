@@ -1,0 +1,79 @@
+﻿@model IEnumerable<EasyPersonal.Models.Alunos>
+
+@{
+    ViewBag.Title = "listaAluno";
+}
+
+
+<h2>Lista de Alunos</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar Aluno", "addAluno")<br />
+</p>
+<table class="table">
+    <tr>
+        
+        <th>
+            Nome
+        </th>
+        <th>
+            Telefone
+        </th>
+        <th>
+            E-Mail
+        </th>
+        <th>
+            Idade
+        </th>
+        <th>
+            Cidade
+        </th>
+        <th>
+            Sexo
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cidade)
+        </td>
+        <td>
+            @if (item.sexo == "m")
+            {
+                <h5 style="margin-top:0px">Masculino</h5>
+            }
+            else
+            {
+                <h5 style="margin-top:0px">Feminino</h5>
+            }
+            
+        </td>
+        <td>
+            @Html.ActionLink("Treinos", "treinosAluno", new { id = item.idAluno }) |
+            @Html.ActionLink("Pagamentos", "pagamentoAluno", new { id = item.idAluno }) |
+            @Html.ActionLink("Avaliações", "avaliacaoAluno", new { id = item.idAluno }) |
+            @Html.ActionLink("Editar", "editarAluno", new { id = item.idAluno }) |
+            @Html.ActionLink("Deletar", "deletarAluno", new { id = item.idAluno })
+        </td>
+    </tr>
+}
+    
+</table>
+
+
+

@@ -1,0 +1,137 @@
+﻿@using EasyPersonal.Models;
+@{
+    ViewBag.Title = "mainAluno";
+}
+
+        @if (ViewBag.AlertaSenha2 != null)
+        {
+            <script type="text/javascript">
+
+                alert('@ViewBag.AlertaSenha2');
+
+            </script>
+        }
+        <h2>Bem-vindo(a), @Session["nome"]</h2>
+    <h6 style="margin-left:1%;">@Html.ActionLink("Alterar Perfil", "editarAluno")</h6>
+    <div style="width:35%; position:relative; float:left; margin-left:3%; margin-right:3%">
+
+
+        <td>
+            <h3>Seu Treino</h3>
+            <table class="table">
+                <tr>
+                    <th>
+                        Dia Semana
+                    </th>
+                    <th>
+                        Exercício
+                    </th>
+                </tr>
+                @{
+        int x = 0;
+        foreach (var item in Treinos.listaTreinos)
+        {
+            if (x <= 5)
+            {
+                <tr>
+                    <td>
+                       @{
+                switch (item.diaSemana)
+                {
+                    case 1:
+                        <h5 style="margin-top:0px;">Segunda-Feira</h5>
+                        break;
+                    case 2:
+                    <h5 style="margin-top:0px;">Terça-Feira</h5>
+                        break;
+                    case 3:
+                    <h5 style="margin-top:0px;">Quarta-Feira</h5>
+                        break;
+                    case 4:
+                    <h5 style="margin-top:0px;">Quinta-Feira</h5>
+                        break;
+
+                    case 5:
+                    <h5 style="margin-top:0px;">Sexta-Feira</h5>
+                        break;
+
+                    case 6:
+                    <h5 style="margin-top:0px;">Sábado</h5>
+                        break;
+
+                    case 7:
+                    <h5 style="margin-top:0px;">Domingo</h5>
+                        break;
+
+                }
+
+}
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nomeExercicio)
+                    </td>
+                </tr>
+                x++;
+            }
+        }
+                }
+            </table>
+            @Html.ActionLink("Visualizar Todo o Treino", "listaTreino")
+
+    </div>
+
+    <div style="width:55%; position:relative; float:left; margin-right:3%">
+
+        <td>
+            <h3>Seu Personal Trainer</h3>
+            <table class="table">
+                <tr>
+                    <th>
+                        Nome
+                    </th>
+                    <th>
+                        Telefone
+                    </th>
+                    <th>
+                        E-mail
+                    </th>
+                    <th>
+                        Idade
+                    </th>
+                    <th>
+                        Cidade
+                    </th>
+                </tr>
+                @{
+                     x=0;
+        foreach (var item in Treinadores.listaTreinadores)
+        {
+            if (x==0)
+            { 
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.telefone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cidade)
+                    </td>
+                </tr>
+                x++;
+            }
+        }
+}
+                
+            </table>
+
+    </div>
+    <div style="clear: both;"></div>
+

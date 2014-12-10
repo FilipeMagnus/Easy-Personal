@@ -1,0 +1,156 @@
+﻿@using EasyPersonal.Models
+@model EasyPersonal.Models.Treinos
+
+@{
+    ViewBag.Title = "editarTreino";
+}
+
+@{ if (Session["SexoAluno"].Equals("m"))
+ {
+    <h2>Editar treino do @Session["NomeAluno"]</h2>
+ }
+ else
+ {
+    <h2>Editar treino da @Session["NomeAluno"]</h2>
+ }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        @Html.Hidden("idTreinador",Session["idTreinoEditar"])
+       
+
+        <div style="margin-left:11%">
+           
+            @Html.Label("Exercício")
+
+                <select name="idExerciciosTreinadores" id="idExerciciosTreinadores">
+                @foreach (var item in ExerciciosTreinadores.listaExerciciosTreinadores)
+                {
+                    if (item.idExercicio == Model.idExerciciosTreinadores)
+                    { 
+                        <option selected="selected" value="@item.idExercicio">@item.nome</option>
+                    }
+                    else
+                    {
+                        <option value="@item.idExercicio">@item.nome</option>
+                    }
+                }
+            </select>
+        </div>
+        <br />
+        @Html.Hidden("idAluno",Session["idAlunoEditar"])
+       
+
+        <div class="form-group">
+            @Html.Label(" Carga", htmlAttributes: new { @class = "control-label col-md-2" })
+             <div class="col-md-10">
+                @Html.EditorFor(model => model.carga, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.carga, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(" Series", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.series, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.series, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(" Repetições", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.repeticoes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.repeticoes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(" Tempo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tempo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tempo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style="margin-left:8%">
+           @Html.Label("Dia da Semana")
+            <select name="diaSemana" id="diaSemana">
+                @{
+                if(Model.diaSemana == 1)
+                { 
+                <option selected="selected" value="1">Segunda-Feira</option>
+                }
+                    else{
+                <option value="1">Segunda-Feira</option>
+                    }
+                if (Model.diaSemana == 2)
+                {
+                    <option selected="selected" value="2">Terça-Feira</option>
+                }
+                else
+                {
+                    <option value="2">Terça-Feira</option>
+                }
+                if (Model.diaSemana == 3)
+                {
+                    <option selected="selected" value="3">Quarta-Feira</option>
+                }
+                else
+                {
+                    <option value="3">Quarta-Feira</option>
+                }
+                if (Model.diaSemana == 4)
+                {
+                    <option selected="selected" value="4">Quinta-Feira</option>
+                }
+                else
+                {
+                    <option value="4">Quinta-Feira</option>
+                }
+                if (Model.diaSemana == 5)
+                {
+                    <option selected="selected" value="5">Sexta-Feira</option>
+                }
+                else
+                {
+                    <option value="5">Sexta-Feira</option>
+                }
+                if (Model.diaSemana == 6)
+                {
+                    <option selected="selected" value="6">Sabado</option>
+                }
+                else
+                {
+                    <option value="6">Sabado</option>
+                }
+                if(Model.diaSemana == 7)
+                {
+                    <option selected="selected" value="7">Domingo</option>
+                }
+                else
+                {
+                    <option value="7">Domingo</option>
+                }
+                }
+           </select>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Voltar", "treinosAluno")
+</div>

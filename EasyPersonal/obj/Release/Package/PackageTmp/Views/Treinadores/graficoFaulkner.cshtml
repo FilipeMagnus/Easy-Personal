@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "graficoFaulkner";
+}
+@{ if (Session["SexoAluno"].Equals("m"))
+ {
+    <h2>Gráfico protocolo Faulkner do @Session["NomeAluno"]</h2>
+ }
+ else
+ {
+    <h2>Gráfico protocolo Faulkner da @Session["NomeAluno"]</h2>
+ }
+}
+<script type="text/javascript" src="https://www.google.com/jsapi "></script>
+<asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+<script type="text/javascript">
+
+    //Carrega o tipo de gráfico a ser utilizado
+    google.load('visualization', '1.0', { 'packages': ['corechart'] });
+    google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+
+            $.ajax({
+                dataType: "json",
+                type: "GET",
+                url: "/Treinadores/preencherJsonFaulkner",
+                success: function (dados) {
+                    var data = new google.visualization.DataTable();
+
+
+
+                    $(dados).each(function (i) {
+                        var campo = dados[i].aux;
+                        if (i == 0)
+                        {
+                            if (campo == 1)
+                            {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Peso Total');
+
+                            }
+                            if (campo == 2)
+                            {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Porcentagem de Gordura');
+
+                            }
+                            if (campo == 3) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Porcentagem Muscular');
+
+                            }
+                            if (campo == 4) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'IMC');
+
+                            }
+                            if (campo == 5) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Altura');
+
+                            }
+                            if (campo == 6) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Massa Gorda');
+                            }
+                            if (campo == 7) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Massa Magro');
+                            }
+                            if (campo == 8) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Massa Muscular');
+                            }
+                            if (campo == 9) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Massa Residual');
+                            }
+                           
+                            if (campo == 10) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Triceps');
+                            }
+                            if (campo == 11) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Subescapular');
+                            }
+                            if (campo == 12) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Supra Ilíaca');
+                            }
+                            if (campo == 13) {
+                                data.addColumn('string', 'Data');
+                                data.addColumn('number', 'Abdômen');
+                            }
+                        }
+                        if (campo == 1) {
+                            data.addRow([dados[i].dataGrafico, dados[i].pesoAtual])
+                        }
+                        if (campo == 2) {
+                            data.addRow([dados[i].dataGrafico, dados[i].porcentagemGordura])
+                        }
+                        if (campo == 3) {
+                            data.addRow([dados[i].dataGrafico, dados[i].porcentagemMuscular])
+                        }
+                        if (campo == 4) {
+                            data.addRow([dados[i].dataGrafico, dados[i].IMC])
+                        }
+                        if (campo == 5) {
+                            data.addRow([dados[i].dataGrafico, dados[i].altura])
+                        }
+                        if (campo == 6) {
+                            data.addRow([dados[i].dataGrafico, dados[i].pesoGordo])
+                        }
+                        if (campo == 7) {
+                            data.addRow([dados[i].dataGrafico, dados[i].pesoMagro])
+                        }
+                        if (campo == 8) {
+                            data.addRow([dados[i].dataGrafico, dados[i].pesoMuscular])
+                        }
+                        if (campo == 9) {
+                            data.addRow([dados[i].dataGrafico, dados[i].pesoResidual])
+                        }
+                        if (campo == 10) {
+                            data.addRow([dados[i].dataGrafico, dados[i].triceps])
+                        }
+                        if (campo == 11) {
+                            data.addRow([dados[i].dataGrafico, dados[i].subescapular])
+                        }
+                        if (campo == 12) {
+                            data.addRow([dados[i].dataGrafico, dados[i].supraIliaca])
+                        }
+                        if (campo == 13) {
+                            data.addRow([dados[i].dataGrafico, dados[i].abdominal])
+                        }
+
+
+
+
+                    });
+                    var options = {
+                        'title': '',
+                        'width': 400,
+                        'height': 300
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById('divGraficoPizza'));
+                    chart.draw(data, options);
+                }
+            });
+       }
+
+</script>
+
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+    
+    <div id="divGraficoPizza"></div>
+
+</asp:Content>
+
+<div>
+    @Html.ActionLink("Voltar", "listaFaulkner")
+</div>
+
+

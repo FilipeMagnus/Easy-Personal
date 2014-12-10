@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EasyPersonal.Models.Pagamentos>
+
+@{
+    ViewBag.Title = "listatodosPagamentos";
+}
+
+<h2>Todos os Pagamentos a Receber</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            <h4 style="margin-top:0px">Aluno</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Valor R$</h4>
+        </th>
+        <th>
+            <h4 style="margin-top:0px">Pagar Dia</h4>
+        </th>
+   
+        <th>
+            <h4 style="margin-top:0px">Status</h4>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                R$ @item.valor.ToString("N2")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.diaPagar)
+            </td>
+     
+            <td>
+                <h5 style="margin-top:0px">Pendente</h5>
+            </td>
+            <td>
+                @Html.ActionLink("Detalhes", "pagamentoAluno", new { id = item.idAluno }) 
+            </td>
+        </tr>
+    }
+    
+
+</table>

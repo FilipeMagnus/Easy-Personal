@@ -1,0 +1,168 @@
+﻿@model IEnumerable<EasyPersonal.Models.Pollock3>
+
+@{
+    ViewBag.Title = "listaPollock3";
+}
+@{ if (Session["SexoAluno"].Equals("m"))
+ {
+    <h2>Lista de avaliação protocolo Pollock 3 dobras do @Session["NomeAluno"]</h2>
+ }
+ else
+ {
+    <h2>Lista de avaliação protocolo Pollock 3 dobras da @Session["NomeAluno"]</h2>
+ }
+}
+<p>
+    @Html.ActionLink("Adicionar Avaliação Pollock 3 Dobras", "addPollock3")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Data Avaliação
+        </th>
+        <th>
+            Densidade Corporal
+        </th>
+        <th>
+            Porcentagem de Gordura
+        </th>
+        <th>
+            Porcentagem Muscular
+        </th>
+        <th>
+            Altura
+        </th>
+        <th>
+            Peso Total
+        </th>
+        <th>
+            Massa Gorda
+        </th>
+        <th>
+            Massa Magra
+        </th>
+        <th>
+            Massa Muscular
+        </th>
+        <th>
+            Massa Residual
+        </th>
+    
+        <th>
+            Peso Mínimo
+        </th>
+        <th>
+            Peso Máximo
+        </th>
+
+        <th>
+            Excesso Peso
+        </th>
+        <th>
+            IMC
+        </th>
+        <th>
+            Coxa
+        </th>
+        <th>
+            Tríceps
+        </th>
+        <th>
+            Supra Ilíaca
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataAvaliacao)
+            </td>
+            <td>
+                @item.densidadeCorporal.ToString("N2")
+            </td>
+            <td>    
+                @item.porcentagemGordura.ToString("N2")%
+            </td>
+            <td>
+                @item.porcentagemMuscular.ToString("N2")%
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.altura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pesoAtual)
+            </td>
+            <td>
+                @item.pesoGordo.ToString("N2")
+            </td>
+            <td>
+                @item.pesoMagro.ToString("N2")
+            </td>
+            <td>
+                @item.pesoMuscular.ToString("N2")
+            </td>
+            <td>
+                @item.pesoResidual.ToString("N2")
+            </td>
+        
+            <td>
+                @item.pesoMinimo.ToString("N2")
+            </td>
+            <td>
+                @item.pesoMaximo.ToString("N2")
+            </td>
+            <td>
+                @item.excessoPeso.ToString("N2")
+            </td>
+            <td>
+                @item.IMC.ToString("N2")
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.coxa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.triceps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.supraIliaca)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "editarPollock3", new { id = item.idPollock3 })
+            </td>
+            <td>
+                @Html.ActionLink("Deletar", "deletarPollock3", new { id = item.idPollock3 })
+            </td>
+        </tr>
+    }
+</table>
+        @using (Html.BeginForm())
+        {
+            <h5>Montar Gráfico:</h5>
+            <select name="grafico" id="grafico">
+                <option value="1" selected="selected">Massa Total</option>
+                <option value="2">Porcentagem de Gordura</option>
+                <option value="3">Porcentagem Muscular</option>
+                <option value="4">IMC</option>
+                <option value="5">Altura</option>
+                <option value="6">Massa Gorda</option>
+                <option value="7">Massa Magra</option>
+                <option value="8">Massa Muscular</option>
+                <option value="9">Massa Residual</option>
+                <option value="10">Coxa</option>
+                <option value="11">Triceps</option>
+                <option value="12">Supra Ilíaca</option>
+            </select>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Gerar Gráfico" class="btn btn-default" />
+                    </div>
+                </div>
+
+        }
+
+
